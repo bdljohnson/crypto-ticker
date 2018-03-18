@@ -1,0 +1,68 @@
+@import url('https://fonts.googleapis.com/css?family=Roboto');
+
+$offwhite: #EAE0D5;
+$patina: #699;
+$offblack: #0A0908;
+$blue: #22333B;
+$khaki: #C6AC8F;
+$umber: #5E503F;
+
+body {
+    font-family: Roboto, sans-serif;
+    margin: 0;
+    padding: 0;
+    background-color: $patina;
+}
+ul{
+    list-style: none;
+    text-decoration: none;  
+}
+label{
+    margin: 0 5px;
+    color: $offwhite;
+}
+select {
+    margin: 0 5px;
+    display: inline-block;
+    padding: 10px 10px;
+}
+option {
+    padding: 10px 10px;
+}
+.main {
+    display: flex;
+    justify-content: center;
+    padding-top: 100px;
+    padding-bottom: 100px;
+}
+.content {
+    min-height: 50vh;
+    width: 80%;
+}
+
+.coinItem {
+    box-sizing: border-box;
+    border: 1px solid $umber;
+    color: $offwhite;
+    padding: 0 20px;
+    width: 100%;
+    display: flex;
+    justify-content: space-between;
+    height: 200px;
+    align-items: center;
+    background-color: $offblack;
+}
+.red{
+    color: red !important;
+}
+.green{
+    color: green !important;
+}
+@media(max-width: 768px){
+    .main{
+        padding-top: 40px;
+    }
+    .content{
+        width: 100%;
+    }
+}
