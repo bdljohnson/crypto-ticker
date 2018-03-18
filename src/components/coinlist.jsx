@@ -3,29 +3,24 @@ import Coin from './coin'
 import compareFunctions from '../compare-functions';
 
 class CoinList extends Component {
-    
+    constructor(props){
+        super(props);
+
+    };
+
+
     render() {
         let sort;
-        let coins = this.props.coins;
+
+        sort = compareFunctions[this.props.newState.queryParams.sort];
+
+        let coins = this.props.newState.coins;
         let sliced = [];
-        switch(this.props.sort){
-            case 'top':
-                sort = compareFunctions.top;
-                break;
-            case 'marketCap':
-                sort = compareFunctions.marketCap;
-                break;
-            case 'oneDay':
-                sort = compareFunctions.oneDay;
-                break;
-            case 'oneWeek':
-                sort = compareFunctions.oneWeek;
-                break;
-        };
         coins.sort(sort);
-        sliced = coins.slice(0, this.props.listLength);
-        console.log(coins);
-        console.log(sliced);
+        sliced = coins.slice(0, this.props.newState.queryParams.listNumber);
+
+
+        
         let coinItems = sliced.map((coin, index) => <Coin key={index} coin={coin}/>)
 
         return ( 

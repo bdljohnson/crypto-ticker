@@ -8,8 +8,8 @@ class App extends Component {
         super(props);
         this.state = {
             queryParams: {
-                listNumber: '',
-                sort: ''
+                listNumber: 10,
+                sort: 'marketCap'
             },
             coins: []
         }
@@ -19,15 +19,18 @@ class App extends Component {
     handleSort(event){
         this.setState({
             queryParams: {
+                listNumber: this.state.queryParams.listNumber,
                 sort: event.target.value
             }
+
         })
         
     }
     handleChange(event){
         this.setState({
             queryParams: {
-                listNumber: event.target.value
+                listNumber: event.target.value,
+                sort: this.state.queryParams.sort
             }
         });
         
@@ -36,7 +39,7 @@ class App extends Component {
 
     componentDidMount() {
         
-        let url = 'https://api.coinmarketcap.com/v1/ticker/?limit=500'
+        let url = 'https://api.coinmarketcap.com/v1/ticker/'
         fetch(url)
         .then((res)=>{
             if(!res.ok){
@@ -64,7 +67,7 @@ class App extends Component {
                 <Nav handleChange={this.handleChange} value={this.state.queryParams.listNumber} handleSort={this.handleSort} sort={this.state.queryParams.sort}/>
                 
                 <div className="main">
-                    <CoinList coins={this.state.coins} sort={this.state.queryParams.sort} listLength={this.state.queryParams.listNumber} />
+                    <CoinList newState={this.state} />
                 </div>
             </div>
             

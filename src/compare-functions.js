@@ -1,15 +1,15 @@
 let compareFunctions = {
     top: (a, b) => {
-        return parseInt(b.price_usd) - parseInt(a.price_usd);
+        return parseFloat(b.price_usd) - parseFloat(a.price_usd);
     },
     oneDay: (a, b) => {
-        return parseInt(b.percent_change_24h) - parseInt(a.percent_change_24h);
+        return parseFloat(b.percent_change_24h) - parseFloat(a.percent_change_24h);
     },
     oneWeek: (a, b) => {
-        return parseInt(b.percent_change_7d) - parseInt(a.percent_change_7d);
+        return parseFloat(b.percent_change_7d) - parseFloat(a.percent_change_7d);
     },
     marketCap: (a, b) => {
-        return parseInt(b.market_cap_usd) - parseInt(a.market_cap_usd);
+        return parseFloat(b.market_cap_usd) - parseFloat(a.market_cap_usd);
     }
 }
 
