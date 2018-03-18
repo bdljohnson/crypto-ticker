@@ -9,52 +9,26 @@ class App extends Component {
         this.state = {
             queryParams: {
                 listNumber: '',
-                sort: 'top'
+                sort: ''
             },
-            coins: [],
-            sliced: []
+            coins: []
         }
         this.handleChange = this.handleChange.bind(this);
         this.handleSort = this.handleSort.bind(this);
     }
     handleSort(event){
-        let sort;
-        switch(event.target.value){
-            case 'top':
-                sort = compareFunctions.top;
-                break;
-            case 'oneDay':
-                sort = compareFunctions.oneDay;
-                break;
-            case 'oneWeek':
-                sort = compareFunctions.oneWeek;
-                break;
-            case 'default':
-                sort = compareFunctions.marketCap;
-                break;
-        }
-        console.log(sort);
-        let sorted = this.state.coins.sort(sort);
-        let sliced = sorted.slice(0, this.state.queryParams.listNumber);
         this.setState({
             queryParams: {
                 sort: event.target.value
-            },
-            coins: sorted,
-            sliced: sliced
+            }
         })
         
     }
     handleChange(event){
-        let sliced = [];
-        if(event.target.value !== this.state.queryParams.listNumber){
-            sliced = this.state.coins.slice(0, event.target.value);
-        }
         this.setState({
             queryParams: {
                 listNumber: event.target.value
-            },
-            sliced: sliced
+            }
         });
         
         
@@ -71,12 +45,12 @@ class App extends Component {
             return res.json();
         })
         .then((body)=>{
-            console.log(body);
-            body.sort(compareFunctions.marketCap);
-            let sliced = body.slice(0, 10);
             this.setState({
-                coins: body,
-                sliced: sliced
+                queryParams: {
+                    listNumber: 10,
+                    sort: 'marketCap'
+                },
+                coins: body
             });
         })
         .catch((error)=>{
@@ -90,7 +64,7 @@ class App extends Component {
                 <Nav handleChange={this.handleChange} value={this.state.queryParams.listNumber} handleSort={this.handleSort} sort={this.state.queryParams.sort}/>
                 
                 <div className="main">
-                    <CoinList coins={this.state.sliced} />
+                    <CoinList coins={this.state.coins} sort={this.state.queryParams.sort} listLength={this.state.queryParams.listNumber} />
                 </div>
             </div>
             
