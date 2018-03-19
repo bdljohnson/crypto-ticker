@@ -13,12 +13,20 @@ class CoinList extends Component {
     render() {
         //get the sort function from props
         let sort = compareFunctions[this.props.newState.queryParams.sort];
-        //Don't want to mutate props here, sort is not pure.
+        //don't want to mutate props
         let coins = this.props.newState.coins;
-        if(this.props.newState.filter != 'default'){
-            coins = coins.filter(filterFunctions[this.props.newState.filter])
+
+        //Filter here
+        let filter = this.props.newState.filter;
+        if(!(filter == 'default') && !(filter == 'popular')){
+            coins = coins.filter(filterFunctions[filter])
+        } else if(this.props.newState.filter == 'popular'){
+            //Filter out anything below the mean 24 hour volume of coins, not sure if I want this or median.
+            let mean = filterFunctions.findMean(coins);
+            coins = coins.filter((coin)=>{  
+                return parseFloat(coin['24h_volume_usd']) > mean;
+            });
         }
-        
         let sliced = [];
 
         //Sort the coins array.

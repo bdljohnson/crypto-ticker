@@ -12,6 +12,7 @@ class FilterSelect extends Component {
                     <option value="default">None</option>
                     <option value="24hgain">Only 24h Gainers</option>
                     <option value="7dgain">Only 7d Gainers</option>
+                    <option value="popular">Popular</option>
                 </select>
             </label>
          )

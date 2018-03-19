@@ -14,7 +14,7 @@ class Nav extends Component {
             <Selector handleChange={this.props.handleChange.bind(this)} value={this.props.selectorValue} />
             <SortSelector handleSort={this.props.handleSort.bind(this)} sort={this.props.sort} />
             <FilterSelect handleFilter={this.props.handleFilter.bind(this)} filter={this.props.filter} />
-            <div className="refresh" onClick={this.props.handleRefresh}>&#x21bb;</div>
+            <button style={{fontSize: 28}} onClick={this.props.handleRefresh}>&#x21bb;</button>
             </div>
         )
     }
