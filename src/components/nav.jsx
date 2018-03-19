@@ -8,9 +8,7 @@ class Nav extends Component {
     }
 
     render(){
-        let styles = {
-            
-        }
+        
         return (
             <div className="nav">
             <Selector handleChange={this.props.handleChange.bind(this)} value={this.props.selectorValue} />

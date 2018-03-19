@@ -77,11 +77,19 @@ class App extends Component {
         });
     }
     render(){
-        
+        let navProps = {
+            handleChange: this.handleChange,
+            value: this.state.queryParams.listNumber,
+            handleSort: this.handleSort,
+            sort: this.state.queryParams.sort,
+            handleFilter: this.handleFilter,
+            filter: this.state.filter
+        };
+        console.log(navProps);
         return(
             <div>
                 {/*selections all in nav*/}
-                <Nav handleChange={this.handleChange} value={this.state.queryParams.listNumber} handleSort={this.handleSort} sort={this.state.queryParams.sort} handleFilter={this.handleFilter} sort={this.state.filter}/>
+                <Nav {...navProps} />
                 
                 <div className="main">
                     <CoinList newState={this.state} />
