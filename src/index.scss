@@ -96,6 +96,19 @@ option {
     animation: loader 1s infinite;
 
 }
+.refresh{
+    border: 1px solid white;
+    height: 5vh;
+    width: 5vh;
+    color: white;
+    font-size: 35px;
+    text-align: center;
+    padding-bottom: 5px;
+}
+.refresh:hover {
+    color: $offblack;
+    background-color: $offwhite;
+}
 @keyframes loader {
     0% {transform:rotate(0deg);}
     100% {transform:rotate(360deg);}

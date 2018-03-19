@@ -13,6 +13,7 @@ class SortSelector extends Component {
                 <option value="top">Top Value</option>
                 <option value="oneDay">24h Perfomance</option>
                 <option value="oneWeek">1w Performance</option>
+                <option value="24hourvolume">24 Hour Volume</option>
             </select>
         </label> 
         )

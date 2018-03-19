@@ -10,6 +10,9 @@ let compareFunctions = {
     },
     marketCap: (a, b) => {
         return parseFloat(b.market_cap_usd) - parseFloat(a.market_cap_usd);
+    },
+    '24hourvolume': (a, b) => {
+        return parseFloat(b['24h_volume_usd']) - parseFloat(a['24h_volume_usd']);
     }
 }
 

@@ -17,7 +17,6 @@ class CoinList extends Component {
         let coins = this.props.newState.coins;
         if(this.props.newState.filter != 'default'){
             coins = coins.filter(filterFunctions[this.props.newState.filter])
-            console.log(coins);
         }
         
         let sliced = [];

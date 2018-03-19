@@ -14,9 +14,11 @@ class App extends Component {
             coins: [],
             filter: 'default'
         }
+        this.handleRefresh = this.handleRefresh.bind(this);
         this.handleChange = this.handleChange.bind(this);
         this.handleSort = this.handleSort.bind(this);
-        this.handleFilter = this.handleFilter.bind(this);    
+        this.handleFilter = this.handleFilter.bind(this);
+
     }
     handleSort(event){
 
@@ -49,6 +51,25 @@ class App extends Component {
             filter: event.target.value
         })
     }
+    handleRefresh(){
+        let url = 'https://api.coinmarketcap.com/v1/ticker/?limit=500'
+        fetch(url)
+        .then((res)=>{
+            if(!res.ok){
+                throw new Error(res.status);
+            }
+            return res.json();
+        })
+        .then((body)=>{
+            this.setState({
+                coins: body
+            });
+            console.log('Refreshed at ' + Date.now())
+        })
+        .catch((error)=>{
+            console.log(error)
+        });
+    }
 
     componentDidMount() {
 
@@ -64,6 +85,7 @@ class App extends Component {
         })
         .then((body)=>{
             //set state with initial sort and limit params
+            
             this.setState({
                 queryParams: {
                     listNumber: 10,
@@ -71,11 +93,15 @@ class App extends Component {
                 },
                 coins: body
             });
+
         })
         .catch((error)=>{
             console.log(error)
         });
+
+        
     }
+    
     render(){
         let navProps = {
             handleChange: this.handleChange,
@@ -83,9 +109,10 @@ class App extends Component {
             handleSort: this.handleSort,
             sort: this.state.queryParams.sort,
             handleFilter: this.handleFilter,
-            filter: this.state.filter
+            filter: this.state.filter,
+            handleRefresh: this.handleRefresh
         };
-        console.log(navProps);
+
         return(
             <div>
                 {/*selections all in nav*/}

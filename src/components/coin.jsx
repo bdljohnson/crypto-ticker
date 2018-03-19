@@ -22,6 +22,8 @@ class Coin extends Component {
                 <ul>
                     <li>USD: ${this.props.coin.price_usd}</li>
                     <li>Market Cap: ${this.props.coin.market_cap_usd}</li>
+                    {/* linter is getting pissy about the string for this, had to use bracket notation*/}
+                    <li>24h Volume: ${this.props.coin['24h_volume_usd']}</li>
                 </ul>
                 </div>
                 <div className="coin-details">
