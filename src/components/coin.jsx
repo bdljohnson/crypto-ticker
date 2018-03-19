@@ -25,8 +25,11 @@ class Coin extends Component {
                 </ul>
                 </div>
                 <div className="coin-details">
-                    <h4>1d: <span className={oneDay}>{this.props.coin.percent_change_24h}%</span></h4>
-                    <h4>7d: <span className={oneWeek}>{this.props.coin.percent_change_7d}%</span></h4>
+                    <ul>
+                        <li>1d: <span className={oneDay}>{oneDay == 'green' && '+'}{this.props.coin.percent_change_24h}%</span></li>
+                        <li>7d: <span className={oneWeek}>{oneWeek == 'green' && '+'}{this.props.coin.percent_change_7d}%</span></li>
+                    </ul>
+                    
                 </div>
             </div>
          )

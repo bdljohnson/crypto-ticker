@@ -27,7 +27,7 @@ ul{
 }
 label{
     margin: 0 5px;
-    color: $offwhite;
+    color: white;
 }
 select {
     margin: 0 5px;
@@ -51,7 +51,7 @@ option {
 .coinItem {
     box-sizing: border-box;
     border: 1px solid $umber;
-    color: $offwhite;
+    color: white;
     padding: 0 20px;
     width: 100%;
     display: flex;
@@ -59,6 +59,9 @@ option {
     height: 200px;
     align-items: center;
     background-color: $offblack;
+}
+.coin-details{
+    padding-top: 50px;
 }
 .red{
     color: red !important;
@@ -99,6 +102,7 @@ option {
 }
 @media(max-width: 768px){
     .nav{
+        justify-content: center;
         height: 15vh;
     }
     .main{
