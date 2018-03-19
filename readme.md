@@ -1,6 +1,6 @@
-# Project Title
+# Ticker-Lite
 
-Lite Cryptocurrency Ticker with Sorting and Filtering.
+Lightweight Cryptocurrency Ticker with Sorting and Filtering.
 
 ## Getting Started
 
