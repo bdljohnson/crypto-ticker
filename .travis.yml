@@ -1,0 +1,12 @@
+language: "node_js"
+node_js:
+  - "node"
+install:
+  - "npm install"
+script:
+  - "parcel build index.html --public-url ./"
+deploy:
+  provider: "surge"
+  project: "./dist/"
+  domain: "obtainable-frame.surge.sh"
+  skip_cleanup: true
