@@ -16,7 +16,7 @@
     "babel-core": "^6.26.0",
     "babel-preset-env": "^1.6.1",
     "babel-preset-react": "^6.24.1",
-    "parcel-bundler": "^1.6.2",
-    "sass": "^1.0.0-rc.1"
+    "node-sass": "^4.7.2",
+    "parcel-bundler": "^1.6.2"
   }
 }
