@@ -13,6 +13,14 @@ body {
     padding: 0;
     background-color: $patina;
 }
+.nav{
+    display: flex;
+    align-items: center;
+    height: 9vh;
+    width: 100vw;
+    background-color: #2C2D38;
+    flex-wrap: wrap;
+}
 ul{
     list-style: none;
     text-decoration: none;  
@@ -58,9 +66,44 @@ option {
 .green{
     color: green !important;
 }
+.loader-overlay{
+    position: fixed;
+    top: 9vh;
+    height: 91vh;
+    z-index: 5;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 100%;
+    background-color: $offblack;
+}
+.fadeOut{
+    opacity: 0;
+    transition: all 100ms linear;
+}
+.loader{
+    height: 100px;
+    width: 100px;
+    border-radius: 50%;
+    border: 10px $offblack solid;
+    border-right: 10px rgba(150,150,150, 0.3) solid;
+    border-left: 10px rgba(150,150,150, 0.3) solid;
+    border-top: 10px solid white;
+    border-bottom: 10px solid white;
+    animation: loader 1s infinite;
+
+}
+@keyframes loader {
+    0% {transform:rotate(0deg);}
+    100% {transform:rotate(360deg);}
+}
 @media(max-width: 768px){
+    .nav{
+        height: 15vh;
+    }
     .main{
-        padding-top: 40px;
+        padding-top: 0;
+        padding-bottom: 0;
     }
     .content{
         width: 100%;

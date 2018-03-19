@@ -11,12 +11,17 @@ class App extends Component {
                 listNumber: 10,
                 sort: 'marketCap'
             },
-            coins: []
+            coins: [],
+            filter: 'default'
         }
         this.handleChange = this.handleChange.bind(this);
         this.handleSort = this.handleSort.bind(this);
+        this.handleFilter = this.handleFilter.bind(this);    
     }
     handleSort(event){
+
+        //have to set both because state doesn't merge objects inside state
+
         this.setState({
             queryParams: {
                 listNumber: this.state.queryParams.listNumber,
@@ -27,6 +32,9 @@ class App extends Component {
         
     }
     handleChange(event){
+
+        //have to set both because state doesn't merge objects inside state
+
         this.setState({
             queryParams: {
                 listNumber: event.target.value,
@@ -36,10 +44,17 @@ class App extends Component {
         
         
     }
+    handleFilter(event){
+        this.setState({
+            filter: event.target.value
+        })
+    }
 
     componentDidMount() {
-        
-        let url = 'https://api.coinmarketcap.com/v1/ticker/'
+
+        //fetch top 100 cryptocurrencies
+
+        let url = 'https://api.coinmarketcap.com/v1/ticker/?limit=500'
         fetch(url)
         .then((res)=>{
             if(!res.ok){
@@ -48,6 +63,7 @@ class App extends Component {
             return res.json();
         })
         .then((body)=>{
+            //set state with initial sort and limit params
             this.setState({
                 queryParams: {
                     listNumber: 10,
@@ -64,11 +80,16 @@ class App extends Component {
         
         return(
             <div>
-                <Nav handleChange={this.handleChange} value={this.state.queryParams.listNumber} handleSort={this.handleSort} sort={this.state.queryParams.sort}/>
+                {/*selections all in nav*/}
+                <Nav handleChange={this.handleChange} value={this.state.queryParams.listNumber} handleSort={this.handleSort} sort={this.state.queryParams.sort} handleFilter={this.handleFilter} sort={this.state.filter}/>
                 
                 <div className="main">
                     <CoinList newState={this.state} />
                 </div>
+                {/* add this later
+                <div className="loader-overlay">
+                    <div className="loader"></div>
+                </div> */}
             </div>
             
         )

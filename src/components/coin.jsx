@@ -8,6 +8,7 @@ class Coin extends Component {
     render() { 
         let oneDay = 'green';
         let oneWeek = 'green';
+        //Parse the string values and set className appropriately
         if(parseFloat(this.props.coin.percent_change_24h) < 0){
             oneDay = 'red';
         }
