@@ -21,6 +21,7 @@ class App extends Component {
         this.handleSort = this.handleSort.bind(this);
         this.handleFilter = this.handleFilter.bind(this);
         this.handlePage = this.handlePage.bind(this);
+        this.fetchData = this.fetchData.bind(this);
 
     }
     handlePage(event){
@@ -64,6 +65,9 @@ class App extends Component {
 
     }
     handleRefresh(){
+        this.fetchData();
+    }
+    fetchData(){
         let url = 'https://api.coinmarketcap.com/v1/ticker/?limit=500'
         fetch(url)
         .then((res)=>{
@@ -73,46 +77,28 @@ class App extends Component {
             return res.json();
         })
         .then((body)=>{
+
+            let filtered = [];
+            if(this.state.filteredCoins.length > 1){
+                filtered = coinFilter(body, this.state.filter);
+            } else {
+                filtered = body;
+            }
             this.setState({
-                coins: body
+                coins: body,
+                filteredCoins: filtered
             });
-            console.log('Refreshed at ' + Date.now())
+
         })
         .catch((error)=>{
             console.log(error)
         });
     }
-
+    componentWillMount(){
+        this.fetchData();
+    }
     componentDidMount() {
-
-        //fetch top 100 cryptocurrencies
-
-        let url = 'https://api.coinmarketcap.com/v1/ticker/?limit=500'
-        fetch(url)
-        .then((res)=>{
-            if(!res.ok){
-                throw new Error(res.status);
-            }
-            return res.json();
-        })
-        .then((body)=>{
-            //set state with initial sort and limit params
-            
-            this.setState({
-                queryParams: {
-                    listNumber: 10,
-                    sort: 'marketCap'
-                },
-                coins: body,
-                filteredCoins: body
-            });
-
-        })
-        .catch((error)=>{
-            console.log(error)
-        });
-
-        
+        setInterval(()=>this.fetchData(), 15000);      
     }
     
     render(){
