@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import Nav from './components/nav';
 import CoinList from './components/coinlist';
 import compareFunctions from './compare-functions'
+import coinFilter from './utils/filter';
 
 class App extends Component {
     constructor(props){
@@ -12,6 +13,7 @@ class App extends Component {
                 sort: 'marketCap'
             },
             coins: [],
+            filteredCoins: [],
             filter: 'default',
             page: 1
         }
@@ -55,9 +57,12 @@ class App extends Component {
         
     }
     handleFilter(event){
+        let filtered = coinFilter(this.state.coins, event.target.value);
         this.setState({
+            filteredCoins: filtered,
             filter: event.target.value
         })
+
     }
     handleRefresh(){
         let url = 'https://api.coinmarketcap.com/v1/ticker/?limit=500'
@@ -99,7 +104,8 @@ class App extends Component {
                     listNumber: 10,
                     sort: 'marketCap'
                 },
-                coins: body
+                coins: body,
+                filteredCoins: body
             });
 
         })
@@ -121,7 +127,7 @@ class App extends Component {
             handleRefresh: this.handleRefresh,
             page: this.state.page,
             handlePage: this.handlePage,
-            arrLength: this.state.coins.length
+            arrLength: this.state.filteredCoins.length
         };
 
         return(
@@ -130,7 +136,7 @@ class App extends Component {
                 <Nav {...navProps} />
                 
                 <div className="main">
-                    <CoinList newState={this.state} />
+                    {this.state.filteredCoins.length > 1 && <CoinList newState={this.state} />}
                 </div>
                 {/* add this later
                 <div className="loader-overlay">

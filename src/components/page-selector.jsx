@@ -11,7 +11,7 @@ class Page extends Component {
         let pageOptions = [];
         for(let i = 0; i < pages; i++){
             
-            pageOptions.push(<option value={i+1}>{i + 1}</option>);
+            pageOptions.push(<option key={i+1} value={i+1}>{i + 1}</option>);
         }
         return ( 
             <label>
