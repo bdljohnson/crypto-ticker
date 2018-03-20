@@ -12,13 +12,20 @@ class App extends Component {
                 sort: 'marketCap'
             },
             coins: [],
-            filter: 'default'
+            filter: 'default',
+            page: 1
         }
         this.handleRefresh = this.handleRefresh.bind(this);
         this.handleChange = this.handleChange.bind(this);
         this.handleSort = this.handleSort.bind(this);
         this.handleFilter = this.handleFilter.bind(this);
+        this.handlePage = this.handlePage.bind(this);
 
+    }
+    handlePage(event){
+        this.setState({
+            page: event.target.value
+        });
     }
     handleSort(event){
 
@@ -41,7 +48,8 @@ class App extends Component {
             queryParams: {
                 listNumber: event.target.value,
                 sort: this.state.queryParams.sort
-            }
+            },
+            page: 1
         });
         
         
@@ -110,7 +118,10 @@ class App extends Component {
             sort: this.state.queryParams.sort,
             handleFilter: this.handleFilter,
             filter: this.state.filter,
-            handleRefresh: this.handleRefresh
+            handleRefresh: this.handleRefresh,
+            page: this.state.page,
+            handlePage: this.handlePage,
+            arrLength: this.state.coins.length
         };
 
         return(

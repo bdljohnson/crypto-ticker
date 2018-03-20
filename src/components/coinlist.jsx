@@ -15,7 +15,14 @@ class CoinList extends Component {
         let sort = compareFunctions[this.props.newState.queryParams.sort];
         //don't want to mutate props
         let coins = this.props.newState.coins;
-
+        let start;
+        if(this.props.newState.page == 1){
+            start = 0;
+        } else {
+            start = (this.props.newState.page - 1) * this.props.newState.queryParams.listNumber;
+        }
+        let end = start + this.props.newState.queryParams.listNumber;
+        
         //Filter here
         let filter = this.props.newState.filter;
         if(!(filter == 'default') && !(filter == 'popular')){
@@ -33,7 +40,7 @@ class CoinList extends Component {
         coins.sort(sort);
 
         //Slice after sorting.
-        sliced = coins.slice(0, this.props.newState.queryParams.listNumber);
+        sliced = coins.slice(start, end);
 
         //use coins array from earlier to reduce memory usage
         coins = sliced.map((coin, index) => <Coin key={index} coin={coin}/>)

@@ -16,7 +16,7 @@ body {
 .nav{
     display: flex;
     align-items: center;
-    height: 9vh;
+    min-height: 9vh;
     width: 100vw;
     background-color: #2C2D38;
     flex-wrap: wrap;
@@ -32,10 +32,10 @@ label{
 select {
     margin: 0 5px;
     display: inline-block;
-    padding: 10px 10px;
+    padding: 10px 5px;
 }
 option {
-    padding: 10px 10px;
+    padding: 10px 5px;
 }
 .main {
     display: flex;
@@ -116,7 +116,7 @@ option {
 @media(max-width: 768px){
     .nav{
         justify-content: center;
-        height: 15vh;
+        min-height: 15vh;
     }
     .main{
         padding-top: 0;
