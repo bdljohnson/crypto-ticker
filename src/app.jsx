@@ -1,7 +1,6 @@
 import React, { Component } from 'react';
 import Nav from './components/nav';
 import CoinList from './components/coinlist';
-import compareFunctions from './compare-functions'
 import coinFilter from './utils/filter';
 
 class App extends Component {

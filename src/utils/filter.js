@@ -4,7 +4,7 @@ let coinFilter = (coins, option)=>{
     switch(option){
         case 'default':
             return coins;
-        case '24gain':
+        case '24hgain':
             return coins.filter(filterFunctions["24hgain"]);
         case '7dgain':
             return coins.filter(filterFunctions["7dgain"]);
